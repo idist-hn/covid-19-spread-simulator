@@ -41,7 +41,18 @@ export class Wall {
 
   render () {
     this.sketch.fill(FORCED_QUARANTINE_WALL_COLOR)
-    this.upWall = this.sketch.rect(this.UP_WALL_POS_X, this.UP_WALL_POS_Y, this.UP_WALL_WIDTH, this.UP_WALL_HEIGHT)
-    this.downWall = this.sketch.rect(this.DOWN_WALL_POS_X, this.DOWN_WALL_POS_Y, this.DOWN_WALL_WIDTH, this.DOWN_WALL_HEIGHT)
+    this.upWall = this.sketch.rect(
+      this.UP_WALL_POS_X,
+      this.UP_WALL_POS_Y,
+      this.UP_WALL_WIDTH,
+      this.UP_WALL_HEIGHT
+    )
+
+    this.downWall = this.sketch.rect(
+      this.DOWN_WALL_POS_X,
+      this.DOWN_WALL_POS_Y,
+      this.DOWN_WALL_WIDTH,
+      this.DOWN_WALL_HEIGHT
+    )
   }
 }
