@@ -2,7 +2,7 @@ window.options = {
   filters: {
     death: false,
     stayHome: false,
-    showQuarantineWall: true,
+    showQuarantineWall: false,
     showControls: true
   },
   canvas: {
@@ -26,11 +26,11 @@ window.options = {
     wall: '#000000'
   },
   balls: {
-    radius: 5
+    radius: 30
   },
   starting: {
     infected: 1,
-    well: 199,
+    well: 4,
     recovered: 0,
     death: 0,
     'max-concurrent-infected': 0
@@ -52,6 +52,7 @@ window.options = {
     ticksToRecoverMin: 500,
     ticksToRecoverMax: 800,
     staticPeoplePercentage: 25,
-    quarantineWallSpeed: 0.2
+    quarantineWallSpeed: 0.2,
+    isLegend: false
   }
 }

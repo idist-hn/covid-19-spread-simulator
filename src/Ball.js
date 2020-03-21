@@ -5,7 +5,6 @@ import {
   TICKS_TO_RECOVER_MIN,
   TICKS_TO_RECOVER_MAX,
   RUN,
-  SPEED,
   STATES
 } from './options.js'
 import { checkCollision, calculateChangeDirection } from './collisions.js'
@@ -13,11 +12,11 @@ import { checkCollision, calculateChangeDirection } from './collisions.js'
 const diameter = BALL_RADIUS * 2
 
 export class Ball {
-  constructor ({ x, y, id, state, sketch, hasMovement }) {
+  constructor ({ x, y, vx, vy, id, state, sketch, hasMovement }) {
     this.x = x
     this.y = y
-    this.vx = sketch.random(-1, 1) * SPEED
-    this.vy = sketch.random(-1, 1) * SPEED
+    this.vx = vx
+    this.vy = vy
     this.sketch = sketch
     this.id = id
     this.state = state
@@ -32,6 +31,7 @@ export class Ball {
     if (this.state === STATES.infected) {
       if (RUN.filters.death && !this.survivor && this.timeInfected >= this.ticksToRecover / 2) {
         this.survivor = this.sketch.random(100) >= MORTALITY_PERCENTATGE
+
         if (!this.survivor) {
           this.hasMovement = false
           this.state = STATES.death

@@ -62,6 +62,7 @@ export const TICKS_TO_RECOVER_MAX = options.general.ticksToRecoverMax
 export const STATIC_PEOPLE_PERCENTATGE = options.general.staticPeoplePercentage
 export const FORCED_QUARANTINE_WALL_COLOR = options.colors.wall
 export const FORCED_QUARANTINE_SPEED = options.general.quarantineWallSpeed
+export const IS_LEGEND = options.general.isLegend
 
 export const resetRun = () => {
   RUN.results = { ...STARTING_BALLS }

@@ -4,7 +4,8 @@ import {
   TOTAL_TICKS,
   STATES,
   COUNTERS,
-  resetRun
+  resetRun,
+  IS_LEGEND
 } from './options.js'
 
 import {
@@ -66,10 +67,12 @@ export const updateCount = () => {
       }
     })
 
-    if (isDesktop) {
-      RUN.tick % 2 === 0 && updateGraph()
-    } else {
-      RUN.tick % 4 === 0 && updateGraph()
+    if (!IS_LEGEND) {
+      if (isDesktop) {
+        RUN.tick % 2 === 0 && updateGraph()
+      } else {
+        RUN.tick % 4 === 0 && updateGraph()
+      }
     }
   }
 

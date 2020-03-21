@@ -4,9 +4,11 @@ import {
   DESKTOP_CANVAS_SIZE,
   STARTING_BALLS,
   RUN,
+  SPEED,
   STATIC_PEOPLE_PERCENTATGE,
   STATES,
-  CANVAS_COLOR
+  CANVAS_COLOR,
+  IS_LEGEND
 } from './options.js'
 
 import {
@@ -23,7 +25,7 @@ import {
   updateCount
 } from './results.js'
 import { Wall } from './Wall.js'
-import { randomStartingPoint } from './collisions.js'
+import { randomStartingPoint, startingPoint } from './collisions.js'
 
 let balls = []
 let walls = null
@@ -44,15 +46,19 @@ export const canvas = new window.p5(sketch => { // eslint-disable-line
   const startBalls = () => {
     let id = 0
     const radius = BALL_RADIUS
+    const speed = SPEED
     balls = []
 
     Object.keys(STARTING_BALLS).forEach(state => {
-      Array.from({ length: STARTING_BALLS[state] }, () => {
+      const length = STARTING_BALLS[state]
+      Array.from({ length }, () => {
         const hasMovement = RUN.filters.stayHome
           ? sketch.random(0, 100) < STATIC_PEOPLE_PERCENTATGE || state === STATES.infected
           : true
 
-        const { x, y } = randomStartingPoint({ sketch, radius, walls })
+        const { x, y, vx, vy } = IS_LEGEND
+          ? startingPoint({ id, radius, width, height, length, speed })
+          : randomStartingPoint({ sketch, radius, walls, speed })
 
         balls[id] = new Ball({
           id,
@@ -60,8 +66,11 @@ export const canvas = new window.p5(sketch => { // eslint-disable-line
           state,
           hasMovement,
           x,
-          y
+          y,
+          vx,
+          vy
         })
+
         id++
       })
     })
