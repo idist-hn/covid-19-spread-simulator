@@ -2,7 +2,7 @@ window.options = {
   filters: {
     death: false,
     stayHome: false,
-    showQuarantineWall: false,
+    showQuarantineWall: true,
     showControls: true
   },
   canvas: {
@@ -49,6 +49,9 @@ window.options = {
     speed: 1,
     totalTicks: 1600,
     ticksToRecover: 500,
-    staticPeoplePercentage: 25
+    ticksToRecoverMin: 500,
+    ticksToRecoverMax: 800,
+    staticPeoplePercentage: 25,
+    quarantineWallSpeed: 0.2
   }
 }

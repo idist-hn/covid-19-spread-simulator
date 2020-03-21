@@ -57,8 +57,11 @@ export const MORTALITY_PERCENTATGE = options.general.mortalityPercentage
 export const SPEED = options.general.speed
 export const TOTAL_TICKS = options.general.totalTicks
 export const TICKS_TO_RECOVER = options.general.ticksToRecover
+export const TICKS_TO_RECOVER_MIN = options.general.ticksToRecoverMin
+export const TICKS_TO_RECOVER_MAX = options.general.ticksToRecoverMax
 export const STATIC_PEOPLE_PERCENTATGE = options.general.staticPeoplePercentage
 export const FORCED_QUARANTINE_WALL_COLOR = options.colors.wall
+export const FORCED_QUARANTINE_SPEED = options.general.quarantineWallSpeed
 
 export const resetRun = () => {
   RUN.results = { ...STARTING_BALLS }

@@ -2,7 +2,8 @@ import {
   BALL_RADIUS,
   COLORS,
   MORTALITY_PERCENTATGE,
-  TICKS_TO_RECOVER,
+  TICKS_TO_RECOVER_MIN,
+  TICKS_TO_RECOVER_MAX,
   RUN,
   SPEED,
   STATES
@@ -21,6 +22,7 @@ export class Ball {
     this.id = id
     this.state = state
     this.timeInfected = 0
+    this.ticksToRecover = sketch.random(TICKS_TO_RECOVER_MIN, TICKS_TO_RECOVER_MAX)
     this.hasMovement = hasMovement
     this.hasCollision = true
     this.survivor = false
@@ -28,7 +30,7 @@ export class Ball {
 
   checkState () {
     if (this.state === STATES.infected) {
-      if (RUN.filters.death && !this.survivor && this.timeInfected >= TICKS_TO_RECOVER / 2) {
+      if (RUN.filters.death && !this.survivor && this.timeInfected >= this.ticksToRecover / 2) {
         this.survivor = this.sketch.random(100) >= MORTALITY_PERCENTATGE
         if (!this.survivor) {
           this.hasMovement = false
@@ -39,7 +41,7 @@ export class Ball {
         }
       }
 
-      if (this.timeInfected >= TICKS_TO_RECOVER) {
+      if (this.timeInfected >= this.ticksToRecover) {
         this.state = STATES.recovered
         RUN.results[STATES.infected]--
         RUN.results[STATES.recovered]++

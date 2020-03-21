@@ -11,11 +11,13 @@ export class Wall {
     this.UP_WALL_POS_X = width / 4
     this.UP_WALL_POS_Y = 0
     this.UP_WALL_WIDTH = wallWidth
-    this.UP_WALL_HEIGHT = height / 2
+    this.UP_WALL_HEIGHT_MIN = height / 2
+    this.UP_WALL_HEIGHT = 2 * height / 3
 
     this.DOWN_WALL_POS_X = width / 4
     this.DOWN_WALL_POS_Y = 2 * height / 3
     this.DOWN_WALL_WIDTH = wallWidth
+    this.DOWN_WALL_HEIGHT_MIN = height / 5
     this.DOWN_WALL_HEIGHT = height / 3
   }
 
@@ -41,6 +43,19 @@ export class Wall {
 
   render () {
     this.sketch.fill(FORCED_QUARANTINE_WALL_COLOR)
+
+    this.UP_WALL_HEIGHT = this.UP_WALL_HEIGHT > this.UP_WALL_HEIGHT_MIN
+      ? this.UP_WALL_HEIGHT - 0.5
+      : this.UP_WALL_HEIGHT
+
+    this.DOWN_WALL_HEIGHT = this.DOWN_WALL_HEIGHT > this.DOWN_WALL_HEIGHT_MIN
+      ? this.DOWN_WALL_HEIGHT - 0.5
+      : this.DOWN_WALL_HEIGHT
+
+    this.DOWN_WALL_POS_Y = this.DOWN_WALL_HEIGHT > this.DOWN_WALL_HEIGHT_MIN
+      ? this.DOWN_WALL_POS_Y + 0.5
+      : this.DOWN_WALL_POS_Y
+
     this.upWall = this.sketch.rect(
       this.UP_WALL_POS_X,
       this.UP_WALL_POS_Y,
