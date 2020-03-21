@@ -1,10 +1,10 @@
 const options = window.options
 
 const DEFAULT_FILTERS = {
-  death: options.death,
-  stayHome: options.stayHome,
-  showQuarantineWall: options.showQuarantineWall,
-  showControls: options.showControls
+  death: options.filters.death,
+  stayHome: options.filters.stayHome,
+  showQuarantineWall: options.filters.showQuarantineWall,
+  showControls: options.filters.showControls
 }
 
 export const CANVAS_SIZE = {
