@@ -1,4 +1,4 @@
-import { FORCED_QUARANTINE_WALL_COLOR } from './options.js'
+import { FORCED_QUARANTINE_WALL_COLOR, FORCED_QUARANTINE_SPEED } from './options.js'
 
 export class Wall {
   constructor ({ width, height, sketch, wallWidth = 20, doorHeight = 10 }) {
@@ -45,15 +45,15 @@ export class Wall {
     this.sketch.fill(FORCED_QUARANTINE_WALL_COLOR)
 
     this.UP_WALL_HEIGHT = this.UP_WALL_HEIGHT > this.UP_WALL_HEIGHT_MIN
-      ? this.UP_WALL_HEIGHT - 0.5
+      ? this.UP_WALL_HEIGHT - FORCED_QUARANTINE_SPEED
       : this.UP_WALL_HEIGHT
 
     this.DOWN_WALL_HEIGHT = this.DOWN_WALL_HEIGHT > this.DOWN_WALL_HEIGHT_MIN
-      ? this.DOWN_WALL_HEIGHT - 0.5
+      ? this.DOWN_WALL_HEIGHT - FORCED_QUARANTINE_SPEED
       : this.DOWN_WALL_HEIGHT
 
     this.DOWN_WALL_POS_Y = this.DOWN_WALL_HEIGHT > this.DOWN_WALL_HEIGHT_MIN
-      ? this.DOWN_WALL_POS_Y + 0.5
+      ? this.DOWN_WALL_POS_Y + FORCED_QUARANTINE_SPEED
       : this.DOWN_WALL_POS_Y
 
     this.upWall = this.sketch.rect(
