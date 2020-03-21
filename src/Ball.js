@@ -82,11 +82,18 @@ export class Ball {
     }
   }
 
-  move () {
+  move ({ walls }) {
     if (!this.hasMovement) return
 
     this.x += this.vx
     this.y += this.vy
+
+    if (walls && walls.checkWallCollision(this.x, this.y, BALL_RADIUS)) {
+      this.vy *= -1
+      this.vx *= -1
+
+      return
+    }
 
     // check horizontal walls
     if (
