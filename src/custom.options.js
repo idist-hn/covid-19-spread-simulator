@@ -3,7 +3,7 @@ window.options = {
     death: false,
     stayHome: false,
     showQuarantineWall: false,
-    showControls: true
+    showControls: false
   },
   canvas: {
     height: 880,
@@ -19,18 +19,18 @@ window.options = {
     },
     status: {
       death: '#c50000',
-      recovered: '#D88DBC',
-      infected: '#5ABA4A',
-      well: '#63C8F2'
+      recovered: '#0099FA',
+      infected: '#9F4C00',
+      well: '#538B94'
     },
     wall: '#000000'
   },
   balls: {
-    radius: 30
+    radius: 5
   },
   starting: {
     infected: 1,
-    well: 4,
+    well: 200,
     recovered: 0,
     death: 0,
     'max-concurrent-infected': 0
