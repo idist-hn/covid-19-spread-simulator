@@ -26,11 +26,11 @@ window.options = {
     wall: '#000000'
   },
   balls: {
-    radius: 5
+    radius: 4
   },
   starting: {
     infected: 1,
-    well: 200,
+    well: 249,
     recovered: 0,
     death: 0,
     'max-concurrent-infected': 0

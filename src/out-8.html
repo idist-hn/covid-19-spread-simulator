@@ -11,15 +11,15 @@
   <title>Covid Emulation</title>
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link as="script" rel="preload" href="./p5.min.js" />
-  <link as="script" rel="preload" href="./custom.options.js" />
-  <link as="script" rel="modulepreload" href="./app.js" />
-  <link as="script" rel="modulepreload" href="./options.js" />
-  <link as="script" rel="modulepreload" href="./dom.js" />
-  <link as="script" rel="modulepreload" href="./Ball.js" />
-  <link as="script" rel="modulepreload" href="./Wall.js" />
-  <link as="script" rel="modulepreload" href="./results.js" />
-  <link as="script" rel="modulepreload" href="./collisions.js" />
+  <link as="script" rel="preload" href="./p5.min.js"/>
+  <link as="script" rel="preload" href="./custom.options.js"/>
+  <link as="script" rel="modulepreload" href="./app.js"/>
+  <link as="script" rel="modulepreload" href="./options.js"/>
+  <link as="script" rel="modulepreload" href="./dom.js"/>
+  <link as="script" rel="modulepreload" href="./Ball.js"/>
+  <link as="script" rel="modulepreload" href="./Wall.js"/>
+  <link as="script" rel="modulepreload" href="./results.js"/>
+  <link as="script" rel="modulepreload" href="./collisions.js"/>
 
   <script defer src="./p5.min.js"></script>
   <script defer>
@@ -32,7 +32,7 @@
       },
       canvas: {
         height: 300,
-        width: 600
+        width: 800
       },
       desktopCanvas: {
         height: 400,
@@ -55,7 +55,7 @@
       },
       starting: {
         infected: 1,
-        well: 200,
+        well: 199,
         recovered: 0,
         death: 0,
         'max-concurrent-infected': 0
@@ -71,18 +71,19 @@
       },
       general: {
         mortalityPercentage: 5,
-        speed: 1,
+        speed: 5,
         totalTicks: 1600,
         ticksToRecover: 500,
         ticksToRecoverMin: 500,
         ticksToRecoverMax: 800,
-        staticPeoplePercentage: 25,
+        staticPeoplePercentage: 8,
         quarantineWallSpeed: 0.2,
         isLegend: false
       }
     }
 
   </script>
+
   <script type="module" src="./app.js"></script>
   <style>
     html {
@@ -219,36 +220,37 @@
 
 </head>
 <body>
-  <main>
-    <header>
-      <form id="controls">
-        <label aria-label="Activate People Stay At Home filter" title="People stay at home">
-          <input id="stay-home" type="checkbox">🏠 Ở nhà
-        </label>
-        <label aria-label="Activate Deaths provoked by virus" title="Deaths provoked by virus">
-          <input id="deaths" type="checkbox">☠️ Hiển thị các ca đã chết
-        </label>
-      </form>
+<main>
+  <header>
+    <form id="controls">
+      <label aria-label="Activate People Stay At Home filter" title="People stay at home">
+        <input id="stay-home" type="checkbox">🏠 Ở nhà
+      </label>
+      <label aria-label="Activate Deaths provoked by virus" title="Deaths provoked by virus">
+        <input id="deaths" type="checkbox">☠️ Hiển thị các ca đã chết
+      </label>
+    </form>
 
-      <div id="count">
-        <div>Khoẻ mạnh<br /><span id="well">0</span></div>
-        <div>Đã hồi phục<br /><span id="recovered">0</span></div>
-        <div>Nhiễm bệnh<br /><span id="infected">0</span></div>
-        <div id="death-count">Chết<br /><span id="death">0</span></div>
-        <div>Tổng số ca nhiễm<br /><span id="max-concurrent-infected">0</span></div>
-      </div>
+    <div id="count">
+      <div>Khoẻ mạnh<br/><span id="well">0</span></div>
+      <div>Đã hồi phục<br/><span id="recovered">0</span></div>
+      <div>Nhiễm bệnh<br/><span id="infected">0</span></div>
+      <div id="death-count">Chết<br/><span id="death">0</span></div>
+      <div>Tổng số ca nhiễm<br/><span id="max-concurrent-infected">0</span></div>
+    </div>
 
-      <div style="display: flex; justify-content: center">
-        <svg id="graph" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" height="50" width="400" aria-labelledby="Graph of virus spread" role="img">
-          <title>Biểu đồ</title>
-        </svg>
-      </div>
-    </header>
-    <section>
-      <div id="canvas">
-        <div id="replay" style='display: none'>🔁 Chạy giả lập</div>
-      </div>
-    </section>
-  </main>
+    <div style="display: flex; justify-content: center">
+      <svg id="graph" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+           height="50" width="800" aria-labelledby="Graph of virus spread" role="img">
+        <title>Biểu đồ</title>
+      </svg>
+    </div>
+  </header>
+  <section>
+    <div id="canvas">
+      <div id="replay" style='display: none'>🔁 Chạy giả lập</div>
+    </div>
+  </section>
+</main>
 </body>
 </html>

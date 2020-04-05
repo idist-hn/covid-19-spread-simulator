@@ -11,23 +11,23 @@
   <title>Covid Emulation</title>
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link as="script" rel="preload" href="./p5.min.js" />
-  <link as="script" rel="preload" href="./custom.options.js" />
-  <link as="script" rel="modulepreload" href="./app.js" />
-  <link as="script" rel="modulepreload" href="./options.js" />
-  <link as="script" rel="modulepreload" href="./dom.js" />
-  <link as="script" rel="modulepreload" href="./Ball.js" />
-  <link as="script" rel="modulepreload" href="./Wall.js" />
-  <link as="script" rel="modulepreload" href="./results.js" />
-  <link as="script" rel="modulepreload" href="./collisions.js" />
+  <link as="script" rel="preload" href="./p5.min.js"/>
+  <link as="script" rel="preload" href="./custom.options.js"/>
+  <link as="script" rel="modulepreload" href="./app.js"/>
+  <link as="script" rel="modulepreload" href="./options.js"/>
+  <link as="script" rel="modulepreload" href="./dom.js"/>
+  <link as="script" rel="modulepreload" href="./Ball.js"/>
+  <link as="script" rel="modulepreload" href="./Wall.js"/>
+  <link as="script" rel="modulepreload" href="./results.js"/>
+  <link as="script" rel="modulepreload" href="./collisions.js"/>
 
   <script defer src="./p5.min.js"></script>
   <script defer>
     window.options = {
       filters: {
         death: false,
-        stayHome: false,
-        showQuarantineWall: true,
+        stayHome: true,
+        showQuarantineWall: false,
         showControls: false
       },
       canvas: {
@@ -76,13 +76,14 @@
         ticksToRecover: 500,
         ticksToRecoverMin: 500,
         ticksToRecoverMax: 800,
-        staticPeoplePercentage: 25,
+        staticPeoplePercentage: 12.5,
         quarantineWallSpeed: 0.2,
         isLegend: false
       }
     }
 
   </script>
+
   <script type="module" src="./app.js"></script>
   <style>
     html {
@@ -216,6 +217,7 @@
 
 
   </style>
+
 </head>
 <body>
 <main>

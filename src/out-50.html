@@ -26,8 +26,8 @@
     window.options = {
       filters: {
         death: false,
-        stayHome: false,
-        showQuarantineWall: true,
+        stayHome: true,
+        showQuarantineWall: false,
         showControls: false
       },
       canvas: {
@@ -76,13 +76,14 @@
         ticksToRecover: 500,
         ticksToRecoverMin: 500,
         ticksToRecoverMax: 800,
-        staticPeoplePercentage: 25,
+        staticPeoplePercentage: 50,
         quarantineWallSpeed: 0.2,
         isLegend: false
       }
     }
 
   </script>
+
   <script type="module" src="./app.js"></script>
   <style>
     html {
@@ -216,6 +217,7 @@
 
 
   </style>
+
 </head>
 <body>
 <main>
