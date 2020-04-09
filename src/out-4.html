@@ -71,7 +71,7 @@
       },
       general: {
         mortalityPercentage: 5,
-        speed: 5,
+        speed: 1,
         totalTicks: 1600,
         ticksToRecover: 500,
         ticksToRecoverMin: 500,
@@ -83,7 +83,6 @@
     }
 
   </script>
-
   <script type="module" src="./app.js"></script>
   <style>
     html {
@@ -149,10 +148,11 @@
       display: flex;
       justify-content: space-around;
       flex-wrap: wrap;
+      flex-direction: column;
     }
 
     #count div {
-      margin-bottom: 16px;
+      margin-bottom: 5px;
       padding: 0 10px;
     }
 
@@ -215,9 +215,16 @@
       display: block;
     }
 
+    .information {
+      width: 800px;
+      margin: 0 auto;
+      display: flex;
+    }
 
+    .information #count {
+      width: 200px;
+    }
   </style>
-
 </head>
 <body>
 <main>
@@ -230,20 +237,19 @@
         <input id="deaths" type="checkbox">☠️ Hiển thị các ca đã chết
       </label>
     </form>
+    <div class="information">
+      <div id="count">
+        <div>Khoẻ mạnh: <span id="well">0</span></div>
+        <div>Đã hồi phục: <span id="recovered">0</span></div>
+        <div>Nhiễm bệnh: <span id="infected">0</span></div>
+      </div>
 
-    <div id="count">
-      <div>Khoẻ mạnh<br/><span id="well">0</span></div>
-      <div>Đã hồi phục<br/><span id="recovered">0</span></div>
-      <div>Nhiễm bệnh<br/><span id="infected">0</span></div>
-      <div id="death-count">Chết<br/><span id="death">0</span></div>
-      <div>Tổng số ca nhiễm<br/><span id="max-concurrent-infected">0</span></div>
-    </div>
-
-    <div style="display: flex; justify-content: center">
-      <svg id="graph" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
-           height="50" width="800" aria-labelledby="Graph of virus spread" role="img">
-        <title>Biểu đồ</title>
-      </svg>
+      <div style="display: flex; justify-content: center">
+        <svg id="graph" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+             height="100" width="600" aria-labelledby="Graph of virus spread" role="img">
+          <title>Biểu đồ</title>
+        </svg>
+      </div>
     </div>
   </header>
   <section>

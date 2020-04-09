@@ -30,10 +30,14 @@ const domElements = Object.fromEntries(
 
 const updateGraph = () => {
   let y = 0
+
+  const total = RUN.results.infected + RUN.results.well + RUN.results.recovered
   const rects = Object.entries(RUN.results).map(([state, count]) => {
     const color = COLORS[state]
     if (count > 0) {
-      const percentatge = count / 200 * 50
+      const percentatge = count / total * 100
+      console.log({ state, count, percentatge })
+
       const rect = `<rect height="${percentatge}" y="${y}" width="1" fill="${color}"></rect>`
       y += percentatge
       return rect

@@ -8,17 +8,17 @@ export class Wall {
     this.wallWidth = wallWidth
     this.doorHeight = doorHeight
 
-    this.UP_WALL_POS_X = width / 4
+    this.UP_WALL_POS_X = width / 2
     this.UP_WALL_POS_Y = 0
     this.UP_WALL_WIDTH = wallWidth
     this.UP_WALL_HEIGHT_MIN = height / 2
     this.UP_WALL_HEIGHT = 2 * height / 3
 
-    this.DOWN_WALL_POS_X = width / 4
-    this.DOWN_WALL_POS_Y = 2 * height / 3
+    this.DOWN_WALL_POS_X = width / 2
+    this.DOWN_WALL_POS_Y = 1.6 * height / 3
     this.DOWN_WALL_WIDTH = wallWidth
-    this.DOWN_WALL_HEIGHT_MIN = height / 5
-    this.DOWN_WALL_HEIGHT = height / 3
+    this.DOWN_WALL_HEIGHT_MIN = height / 3
+    this.DOWN_WALL_HEIGHT = 1.6 * height / 3
   }
 
   checkWallCollision (x, y, radius) {

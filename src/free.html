@@ -11,15 +11,15 @@
   <title>Covid Emulation</title>
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link as="script" rel="preload" href="./p5.min.js" />
-  <link as="script" rel="preload" href="./custom.options.js" />
-  <link as="script" rel="modulepreload" href="./app.js" />
-  <link as="script" rel="modulepreload" href="./options.js" />
-  <link as="script" rel="modulepreload" href="./dom.js" />
-  <link as="script" rel="modulepreload" href="./Ball.js" />
-  <link as="script" rel="modulepreload" href="./Wall.js" />
-  <link as="script" rel="modulepreload" href="./results.js" />
-  <link as="script" rel="modulepreload" href="./collisions.js" />
+  <link as="script" rel="preload" href="./p5.min.js"/>
+  <link as="script" rel="preload" href="./custom.options.js"/>
+  <link as="script" rel="modulepreload" href="./app.js"/>
+  <link as="script" rel="modulepreload" href="./options.js"/>
+  <link as="script" rel="modulepreload" href="./dom.js"/>
+  <link as="script" rel="modulepreload" href="./Ball.js"/>
+  <link as="script" rel="modulepreload" href="./Wall.js"/>
+  <link as="script" rel="modulepreload" href="./results.js"/>
+  <link as="script" rel="modulepreload" href="./collisions.js"/>
 
   <script defer src="./p5.min.js"></script>
   <script defer>
@@ -148,10 +148,11 @@
       display: flex;
       justify-content: space-around;
       flex-wrap: wrap;
+      flex-direction: column;
     }
 
     #count div {
-      margin-bottom: 16px;
+      margin-bottom: 5px;
       padding: 0 10px;
     }
 
@@ -214,41 +215,48 @@
       display: block;
     }
 
+    .information {
+      width: 800px;
+      margin: 0 auto;
+      display: flex;
+    }
 
+    .information #count {
+      width: 200px;
+    }
   </style>
 </head>
 <body>
-  <main>
-    <header>
-      <form id="controls">
-        <label aria-label="Activate People Stay At Home filter" title="People stay at home">
-          <input id="stay-home" type="checkbox">🏠 Ở nhà
-        </label>
-        <label aria-label="Activate Deaths provoked by virus" title="Deaths provoked by virus">
-          <input id="deaths" type="checkbox">☠️ Hiển thị các ca đã chết
-        </label>
-      </form>
-
+<main>
+  <header>
+    <form id="controls">
+      <label aria-label="Activate People Stay At Home filter" title="People stay at home">
+        <input id="stay-home" type="checkbox">🏠 Ở nhà
+      </label>
+      <label aria-label="Activate Deaths provoked by virus" title="Deaths provoked by virus">
+        <input id="deaths" type="checkbox">☠️ Hiển thị các ca đã chết
+      </label>
+    </form>
+    <div class="information">
       <div id="count">
-        <div>Khoẻ mạnh<br /><span id="well">0</span></div>
-        <div>Đã hồi phục<br /><span id="recovered">0</span></div>
-        <div>Nhiễm bệnh<br /><span id="infected">0</span></div>
-        <div id="death-count">Chết<br /><span id="death">0</span></div>
-        <div>Tổng số ca nhiễm<br /><span id="max-concurrent-infected">0</span></div>
+        <div>Khoẻ mạnh: <span id="well">0</span></div>
+        <div>Đã hồi phục: <span id="recovered">0</span></div>
+        <div>Nhiễm bệnh: <span id="infected">0</span></div>
       </div>
 
       <div style="display: flex; justify-content: center">
         <svg id="graph" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
-             height="50" width="800" aria-labelledby="Graph of virus spread" role="img">
+             height="100" width="600" aria-labelledby="Graph of virus spread" role="img">
           <title>Biểu đồ</title>
         </svg>
       </div>
-    </header>
-    <section>
-      <div id="canvas">
-        <div id="replay" style='display: none'>🔁 Chạy giả lập</div>
-      </div>
-    </section>
-  </main>
+    </div>
+  </header>
+  <section>
+    <div id="canvas">
+      <div id="replay" style='display: none'>🔁 Chạy giả lập</div>
+    </div>
+  </section>
+</main>
 </body>
 </html>
