@@ -1,0 +1,262 @@
+<!--
+  FROM https://github.com/midudev/covid-19-spread-simulator
+  Author Miguel Ángel Durán García - https://midu.dev
+  Contributor Elena Torró Martínez - https://elenatorro.com
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Covid Emulation</title>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link as="script" rel="preload" href="./p5.min.js"/>
+  <link as="script" rel="preload" href="./custom.options.js"/>
+  <link as="script" rel="modulepreload" href="./app.js"/>
+  <link as="script" rel="modulepreload" href="./options.js"/>
+  <link as="script" rel="modulepreload" href="./dom.js"/>
+  <link as="script" rel="modulepreload" href="./Ball.js"/>
+  <link as="script" rel="modulepreload" href="./Wall.js"/>
+  <link as="script" rel="modulepreload" href="./results.js"/>
+  <link as="script" rel="modulepreload" href="./collisions.js"/>
+
+  <script defer src="./p5.min.js"></script>
+  <script defer>
+    window.options = {
+      filters: {
+        death: false,
+        stayHome: true,
+        showQuarantineWall: false,
+        showControls: false
+      },
+      canvas: {
+        height: 300,
+        width: 800
+      },
+      desktopCanvas: {
+        height: 400,
+        width: 800
+      },
+      colors: {
+        canvas: {
+          background: '#FFFFFF'
+        },
+        status: {
+          death: '#c50000',
+          recovered: '#0099FA',
+          infected: '#9F4C00',
+          well: '#538B94'
+        },
+        wall: '#000000'
+      },
+      balls: {
+        radius: 5
+      },
+      starting: {
+        infected: 1,
+        well: 199,
+        recovered: 0,
+        death: 0,
+        'max-concurrent-infected': 0
+      },
+      states: {
+        infected: 'infected',
+        well: 'well',
+        recovered: 'recovered',
+        death: 'death'
+      },
+      counters: {
+        'max-concurrent-infected': 'max-concurrent-infected'
+      },
+      general: {
+        mortalityPercentage: 5,
+        speed: 1,
+        totalTicks: 1600,
+        ticksToRecover: 500,
+        ticksToRecoverMin: 500,
+        ticksToRecoverMax: 800,
+        staticPeoplePercentage: 25,
+        quarantineWallSpeed: 0.2,
+        isLegend: false
+      }
+    }
+
+  </script>
+  <script type="module" src="./app.js"></script>
+  <style>
+    html {
+      box-sizing: border-box;
+    }
+
+    *, *:before, *:after {
+      box-sizing: inherit;
+    }
+
+    #share {
+      position: fixed;
+      bottom: 16px;
+      right: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 5px 0 0px 5px;
+      background: rgba(0, 153, 255, 0.25);
+      z-index: 1;
+      text-decoration: none;
+      font-size: 12px;
+      padding: 4px 16px;
+      color: #000;
+    }
+
+    #share:hover {
+      background: rgba(0, 153, 255, 0.5);
+    }
+
+    body {
+      align-items: center;
+      display: flex;
+      flex-direction: column;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+      justify-content: center;
+      margin: 0 auto;
+      user-select: none;
+      overflow: hidden;
+    }
+
+    h1 {
+      font-size: 23px;
+      text-align: center;
+    }
+
+    main {
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+    }
+
+    canvas {
+      border: 1px solid #eee;
+    }
+
+    #graph {
+      margin-bottom: 1px;
+      transform: scaleY(-1);
+    }
+
+    #count {
+      display: flex;
+      justify-content: space-around;
+      flex-wrap: wrap;
+      flex-direction: column;
+    }
+
+    #count div {
+      margin-bottom: 5px;
+      padding: 0 10px;
+    }
+
+    #count span {
+      font-size: 21px;
+      font-weight: 800;
+    }
+
+    footer {
+      padding-bottom: 8px;
+      color: #777;
+      font-size: 12px;
+    }
+
+    footer a {
+      color: #09f;
+      text-decoration: none;
+    }
+
+    form {
+      display: flex;
+      justify-content: space-around;
+      border-bottom: 1px solid #eee;
+      padding-bottom: 16px;
+      margin-bottom: 16px;
+    }
+
+    label {
+      align-items: center;
+      display: flex;
+      justify-content: flex-end;
+    }
+
+    #canvas {
+      margin: auto;
+      padding-bottom: 16px;
+      position: relative;
+      display: flex;
+      justify-content: center;
+    }
+
+    #replay {
+      align-items: center;
+      background: rgba(255, 255, 255, .85);
+      cursor: pointer;
+      display: flex;
+      height: 100%;
+      font-weight: 500;
+      font-size: 21px;
+      justify-content: center;
+      position: absolute;
+      width: 100%;
+    }
+
+    #death-count {
+      display: none;
+    }
+
+    #death-count.show {
+      display: block;
+    }
+
+    .information {
+      width: 800px;
+      margin: 0 auto;
+      display: flex;
+    }
+
+    .information #count {
+      width: 200px;
+    }
+  </style>
+</head>
+<body>
+<main>
+  <header>
+    <form id="controls">
+      <label aria-label="Activate People Stay At Home filter" title="People stay at home">
+        <input id="stay-home" type="checkbox">🏠 Ở nhà
+      </label>
+      <label aria-label="Activate Deaths provoked by virus" title="Deaths provoked by virus">
+        <input id="deaths" type="checkbox">☠️ Hiển thị các ca đã chết
+      </label>
+    </form>
+    <div class="information">
+      <div id="count">
+        <div>Khoẻ mạnh: <span id="well">0</span></div>
+        <div>Đã hồi phục: <span id="recovered">0</span></div>
+        <div>Nhiễm bệnh: <span id="infected">0</span></div>
+      </div>
+
+      <div style="display: flex; justify-content: center">
+        <svg id="graph" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+             height="100" width="600" aria-labelledby="Graph of virus spread" role="img">
+          <title>Biểu đồ</title>
+        </svg>
+      </div>
+    </div>
+  </header>
+  <section>
+    <div id="canvas">
+      <div id="replay" style='display: none'>🔁 Chạy giả lập</div>
+    </div>
+  </section>
+</main>
+</body>
+</html>
